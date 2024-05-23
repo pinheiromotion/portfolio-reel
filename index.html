@@ -80,7 +80,9 @@
         });
 
         lottiePlayer.addEventListener('complete', () => {
-            if (!isMouseOver) {
+            if (isMouseOver) {
+                lottiePlayer.play();
+            } else {
                 lottiePlayer.stop();
             }
         });
