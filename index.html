@@ -37,7 +37,13 @@
             height: 100%;
         }
         .lottie-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
             margin: 20px 0;
+        }
+        .lottie-item {
+            margin: 10px;
         }
         footer {
             background-color: #333;
@@ -58,33 +64,51 @@
             <iframe src="https://player.vimeo.com/video/949261802?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Portfolio Reel 2024"></iframe>
         </div>
         <div class="lottie-container">
-            <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
-            <dotlottie-player id="lottie" src="https://lottie.host/1855efcc-049f-4994-8215-8a48fbff6e8c/8yLyP3GGM5.json" background="transparent" speed="1" style="width: 300px; height: 300px;"></dotlottie-player>
+            <div class="lottie-item">
+                <dotlottie-player id="lottie1" src="https://lottie.host/1855efcc-049f-4994-8215-8a48fbff6e8c/8yLyP3GGM5.json" background="transparent" speed="1" style="width: 300px; height: 300px;"></dotlottie-player>
+            </div>
+            <div class="lottie-item">
+                <dotlottie-player id="lottie2" src="https://lottie.host/63b7e372-f0e8-47ff-b2a4-46ce1262c6d7/TEvPdHyuOl.json" background="transparent" speed="1" style="width: 300px; height: 300px;"></dotlottie-player>
+            </div>
+            <div class="lottie-item">
+                <dotlottie-player id="lottie3" src="https://lottie.host/c0447a78-45bc-44d9-8fed-f5bd2e0f5140/zewaKGihSs.json" background="transparent" speed="1" style="width: 300px; height: 300px;"></dotlottie-player>
+            </div>
+            <div class="lottie-item">
+                <dotlottie-player id="lottie4" src="https://lottie.host/fef12e13-a37d-4cdf-b3ae-65dc1aa6053e/iKRujD6ku9.json" background="transparent" speed="1" style="width: 300px; height: 300px;"></dotlottie-player>
+            </div>
+            <div class="lottie-item">
+                <dotlottie-player id="lottie5" src="https://lottie.host/c4ea214e-58a0-483c-824b-6c6e3c3d5db4/AzaM7rp9Q8.json" background="transparent" speed="1" style="width: 300px; height: 300px;"></dotlottie-player>
+            </div>
         </div>
         <p>Welcome to my portfolio reel! Enjoy the video showcasing my work in motion design.</p>
     </main>
     <footer>
         <p>Contact me at: your.email@example.com</p>
     </footer>
+    <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
     <script>
-        const lottiePlayer = document.getElementById('lottie');
-        let isMouseOver = false;
+        const lottiePlayers = ['lottie1', 'lottie2', 'lottie3', 'lottie4', 'lottie5'];
 
-        lottiePlayer.addEventListener('mouseover', () => {
-            isMouseOver = true;
-            lottiePlayer.play();
-        });
+        lottiePlayers.forEach(playerId => {
+            const lottiePlayer = document.getElementById(playerId);
+            let isMouseOver = false;
 
-        lottiePlayer.addEventListener('mouseleave', () => {
-            isMouseOver = false;
-        });
-
-        lottiePlayer.addEventListener('complete', () => {
-            if (isMouseOver) {
+            lottiePlayer.addEventListener('mouseover', () => {
+                isMouseOver = true;
                 lottiePlayer.play();
-            } else {
-                lottiePlayer.stop();
-            }
+            });
+
+            lottiePlayer.addEventListener('mouseleave', () => {
+                isMouseOver = false;
+            });
+
+            lottiePlayer.addEventListener('complete', () => {
+                if (isMouseOver) {
+                    lottiePlayer.play();
+                } else {
+                    lottiePlayer.stop();
+                }
+            });
         });
     </script>
 </body>
