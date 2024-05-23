@@ -68,14 +68,32 @@
     </footer>
     <script>
         const lottiePlayer = document.getElementById('lottie');
+        let isMouseOver = false;
+
         lottiePlayer.addEventListener('mouseover', () => {
+            isMouseOver = true;
             lottiePlayer.setAttribute('loop', '');
             lottiePlayer.play();
         });
 
         lottiePlayer.addEventListener('mouseleave', () => {
-            lottiePlayer.removeAttribute('loop');
+            isMouseOver = false;
+            checkIfShouldStop();
         });
+
+        function checkIfShouldStop() {
+            if (!isMouseOver) {
+                lottiePlayer.removeAttribute('loop');
+                lottiePlayer.addEventListener('complete', stopAnimation);
+            }
+        }
+
+        function stopAnimation() {
+            if (!isMouseOver) {
+                lottiePlayer.stop();
+                lottiePlayer.removeEventListener('complete', stopAnimation);
+            }
+        }
     </script>
 </body>
 </html>
