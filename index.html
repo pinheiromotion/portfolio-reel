@@ -59,7 +59,7 @@
         </div>
         <div class="lottie-container">
             <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
-            <dotlottie-player id="lottie" src="https://lottie.host/1855efcc-049f-4994-8215-8a48fbff6e8c/8yLyP3GGM5.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop></dotlottie-player>
+            <dotlottie-player id="lottie" src="https://lottie.host/1855efcc-049f-4994-8215-8a48fbff6e8c/8yLyP3GGM5.json" background="transparent" speed="1" style="width: 300px; height: 300px;"></dotlottie-player>
         </div>
         <p>Welcome to my portfolio reel! Enjoy the video showcasing my work in motion design.</p>
     </main>
@@ -72,26 +72,18 @@
 
         lottiePlayer.addEventListener('mouseover', () => {
             isMouseOver = true;
-            lottiePlayer.setAttribute('loop', '');
             lottiePlayer.play();
         });
 
         lottiePlayer.addEventListener('mouseleave', () => {
             isMouseOver = false;
-            lottiePlayer.removeAttribute('loop');
-            checkIfShouldStop();
         });
 
-        function checkIfShouldStop() {
-            const onAnimationComplete = () => {
-                if (!isMouseOver) {
-                    lottiePlayer.stop();
-                    lottiePlayer.removeEventListener('complete', onAnimationComplete);
-                }
-            };
-
-            lottiePlayer.addEventListener('complete', onAnimationComplete);
-        }
+        lottiePlayer.addEventListener('complete', () => {
+            if (!isMouseOver) {
+                lottiePlayer.stop();
+            }
+        });
     </script>
 </body>
 </html>
