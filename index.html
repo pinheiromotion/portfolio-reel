@@ -78,21 +78,19 @@
 
         lottiePlayer.addEventListener('mouseleave', () => {
             isMouseOver = false;
+            lottiePlayer.removeAttribute('loop');
             checkIfShouldStop();
         });
 
         function checkIfShouldStop() {
-            if (!isMouseOver) {
-                lottiePlayer.removeAttribute('loop');
-                lottiePlayer.addEventListener('complete', stopAnimation);
-            }
-        }
+            const onAnimationComplete = () => {
+                if (!isMouseOver) {
+                    lottiePlayer.stop();
+                    lottiePlayer.removeEventListener('complete', onAnimationComplete);
+                }
+            };
 
-        function stopAnimation() {
-            if (!isMouseOver) {
-                lottiePlayer.stop();
-                lottiePlayer.removeEventListener('complete', stopAnimation);
-            }
+            lottiePlayer.addEventListener('complete', onAnimationComplete);
         }
     </script>
 </body>
