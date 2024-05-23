@@ -10,7 +10,7 @@
             text-align: center;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background-color: #D78542;
         }
         header {
             background-color: #333;
@@ -58,13 +58,29 @@
             <iframe src="https://player.vimeo.com/video/949261802?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Portfolio Reel 2024"></iframe>
         </div>
         <div class="lottie-container">
-            <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script> 
-            <dotlottie-player src="https://lottie.host/1855efcc-049f-4994-8215-8a48fbff6e8c/8yLyP3GGM5.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+            <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+            <dotlottie-player id="lottie-animation" src="https://lottie.host/1855efcc-049f-4994-8215-8a48fbff6e8c/8yLyP3GGM5.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
         </div>
         <p>Welcome to my portfolio reel! Enjoy the video showcasing my work in motion design.</p>
     </main>
     <footer>
         <p>Contact me at: your.email@example.com</p>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const lottiePlayer = document.getElementById('lottie-animation');
+
+            lottiePlayer.addEventListener('mouseenter', function() {
+                lottiePlayer.loop = true;
+            });
+
+            lottiePlayer.addEventListener('mouseleave', function() {
+                lottiePlayer.loop = false;
+                lottiePlayer.addEventListener('complete', function() {
+                    lottiePlayer.stop();
+                }, { once: true });
+            });
+        });
+    </script>
 </body>
 </html>
